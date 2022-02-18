@@ -1,29 +1,38 @@
 const form = document.querySelector("#loan-form");
-form.addEventListener('submit', calculateResults);
+// form.addEventListener('submit', calculateResults);
 
-function calculateResults(e) {
-    const amount = document.querySelector("#amount");
-    const interest = document.querySelector("#interest");
-    const years = document.querySelector("#years");
+const amount = document.querySelector("#amount");
+const interest = document.querySelector("#interest");
+const years = document.querySelector("#years");
 
-    const monthlyPayment = document.querySelector('#monthly-payment');
-    const totalPayment = document.querySelector('#total-payment');
-    const totalInterest = document.querySelector('#total-interest');
+const monthlyPayment = document.querySelector("#monthly-payment");
+const totalAmount = document.querySelector("#total-payment");
+const totalInterest = document.querySelector("#total-interest");
+const loader = document.querySelector("#loader");
 
-    const principal = parseFloat(amount.value);
-    const calculatedInterest = parseFloat(interest.value) / 100 / 12;
-    const calculatedPayments = parseFloat(years.value) * 12;
-
-    const x = Math.pow(1 + calculatedInterest, calculatedPayments);
-    const monthly = (principal * x * calculatedInterest) / (x-1);
-
-    if(isFinite(monthly)) {
-        monthlyPayment.value = monthly.toFixed(2);
-        totalPayment.value = (monthly * colculatedPayments).toFixed(2);
-        totalInterest.value = ((monthly * colculatedPayments) - principal).toFixed(2);
-    } else {
-        alert('Please fill in the fields!');
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    if(amount.value === "" || interest.value === "" || years.value === "") {
+        alert("Please fill in all fields");
     }
 
-    e.preventDefault();
-}
+    loader.style.display = "block";
+    setTimeout(() => {
+        loader.style.display = 'none';
+    }, 1000);
+
+    const amountValue = parseFloat(amount.value);
+    const interestValue = parseFloat(interest.value);
+    const yearsValue = parseFloat(years.value);
+
+    const oneYear = yearsValue * 12;
+    const resAmount = amountValue / 100 * interestValue + amountValue;
+    const resInterest = amountValue / 100 * interestValue;
+    const resYears = resAmount / oneYear;
+
+    monthlyPayment.innerHTML = resYears.toFixed(2);
+    totalAmount.innerHTML = resAmount.toFixed(2);
+    totalInterest.innerHTML = resInterest.toFixed(2);
+
+});
