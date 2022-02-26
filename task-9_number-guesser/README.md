@@ -1,1 +1,1 @@
-# [Load-Calc](https://tattybubut.github.io/Module-2-JavaScript/task-9_number-guesser/index.html) 
+# Load-Calc [link here](https://tattybubut.github.io/Module-2-JavaScript/task-9_number-guesser/index.html) 
