@@ -24,6 +24,7 @@ guessBtn.addEventListener("click", function () {
         if (guessesLeft === 0) {
         gameOver(false, `Вы проиграли! Правильный ответ ${winningNum}`);
         } else {
+
         // continues
         guessInput.style.border = "1px solid red";
         guessInput.value = "";
@@ -47,6 +48,7 @@ function gameOver(won, msg) {
     guessInput.style.border = `1px solid ${color}`;
     message.style.color = color;
     setMessage(msg);
+    
     // play again
     guessBtn.textContent = "Начать заново";
     guessBtn.className += "play-again";
