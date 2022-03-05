@@ -15,7 +15,7 @@
 </details>
 
 <details>
-  <summary>Task-12❗</summary>
+  <summary>Task-12✅</summary>
 
 **Описание задания**
     
